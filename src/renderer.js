@@ -3,7 +3,7 @@ import common from './common'
 import {Observable} from 'rx'
 
 type RendererConfig = {
-  site: {
+  size: {
     x: number,
     y: number
   }
@@ -11,7 +11,7 @@ type RendererConfig = {
 
 export default (config: RendererConfig) => {
 
-  const renderer = (() => {
+  const renderer = (_ => {
     const r = new PIXI.WebGLRenderer(config.size.x, config.size.y, {
       antialias: true
     })
@@ -20,13 +20,22 @@ export default (config: RendererConfig) => {
     return r
   })()
 
+  // Automatically mount. Maybe I don't want to do this at this point
+  // though...
   common.obs.domRoot.subscribe(body => {
     body.appendChild(renderer.view)
   })
 
+  // Automatically set the height on resize
   common.obs.resize.subscribe(([x, y]) => {
-    renderer.view.style.height = `${config.size.y * (x / config.size.x)}px`
+    renderer.view.style.height = config.size.y * (x / config.size.x) + 'px'
   })
 
+  console.info('connect: obs.domRoot')
+  common.obs.domRoot.connect()
+  console.info('connect: obs.resize')
+  common.obs.resize.connect()
+  console.info('connect: obs.tick')
+  common.obs.tick.connect()
   return renderer
 }

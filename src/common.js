@@ -25,7 +25,6 @@ export const obs = {}
  * completed. Emits also for when no assets are sent
  */
 create.resources = (loader: Loader, assets) => {
-
   if(!Object.keys(assets).length) {
     // no assets, emit empty
     return Observable.just({})
@@ -38,9 +37,6 @@ create.resources = (loader: Loader, assets) => {
   return Observable.fromCallback(
     loader.load, loader, (_, resources) => resources
   )()
-  // share one instance
-  .publish()
-  .refCount()
 }
 
 /**
@@ -52,7 +48,7 @@ obs.domReady = Observable
     Observable.fromEvent(document, 'readystatechange')
   )
   .map(_ => document.readyState)
-  .filter(s => s === 'interactive')
+  .filter(s => s === 'complete')
   .take(1)
 
 /**
@@ -64,11 +60,12 @@ obs.resize = Observable
     Observable.fromEvent(window, 'resize')
   )
   .map(_ => [window.innerWidth, window.innerHeight])
+  .publishValue([window.innerWidth, window.innerHeight])
 
 /**
  * Emits root dom node when it's ready
  */
-obs.domRoot = obs.domReady.flatMap(Observable
+obs.domRoot = obs.domReady.flatMap(_ => Observable
   .just(document.body)
   .map(body => {
     body.style.backgroundColor = '#000'
@@ -85,7 +82,6 @@ obs.domRoot = obs.domReady.flatMap(Observable
 .take(1)
 // and it should be shared ref
 .publish()
-.refCount()
 
 const delta = last => curr => {
   const dt = Math.max(0, curr - last)
@@ -117,5 +113,6 @@ obs.tick = Observable.create(observer => {
   }
 })
 .map(delta(performance.now()))
+.publish()
 
 export default {create, obs}
