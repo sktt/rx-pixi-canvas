@@ -1,0 +1,23 @@
+{
+  "name": "canvas-renderer",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "sktt",
+  "license": "ISC",
+  "dependencies": {
+    "pixi.js": "^3.0.11",
+    "point-in-big-polygon": "^2.0.0",
+    "rx": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-syntax-flow": "^6.5.0",
+    "babel-plugin-transform-flow-strip-types": "^6.7.0",
+    "babel-plugin-typecheck": "^3.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "webpack": "^1.13.0"
+  }
+}
