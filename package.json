@@ -1,9 +1,12 @@
 {
   "name": "canvas-renderer",
   "version": "0.1.0",
-  "description": "",
+  "description": "Renderer using pixi with an rx common api",
   "main": "index.js",
-  "scripts": {},
+  "jsnext:main": "index.js",
+  "scripts": {
+    "build": "rollup -c -i ./src/index.js"
+  },
   "author": "sktt",
   "license": "ISC",
   "dependencies": {
@@ -17,7 +20,10 @@
     "babel-plugin-syntax-flow": "^6.5.0",
     "babel-plugin-transform-flow-strip-types": "^6.7.0",
     "babel-plugin-typecheck": "^3.8.0",
-    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-es2015-loose-rollup": "^7.0.0",
+    "rollup-plugin-babel": "^2.4.0",
+    "rollup-plugin-node-resolve": "^1.5.0",
+    "rollup-plugin-uglify": "^0.3.1",
     "webpack": "^1.13.0"
   }
 }

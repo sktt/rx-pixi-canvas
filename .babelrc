@@ -1,6 +1,6 @@
 {
   "presets": [
-    "es2015"
+    "es2015-loose-rollup"
   ],
   "env": {
     "development": {
@@ -12,6 +12,7 @@
     },
     "production": {
       "plugins": [
+        "syntax-flow",
         "transform-flow-strip-types"
       ]
     }
