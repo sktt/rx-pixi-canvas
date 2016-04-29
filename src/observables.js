@@ -13,7 +13,7 @@ type Loader = {
 /**
  * create observer helpers
  */
-export const create = {}
+export const obsCreate = {}
 
 /**
  * Static observers cold or hot
@@ -115,4 +115,4 @@ obs.tick = Observable.create(observer => {
 .map(delta(performance.now()))
 .publish()
 
-export default {create, obs}
+export default {obsCreate, obs}

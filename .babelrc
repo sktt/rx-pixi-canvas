@@ -1,6 +1,7 @@
 {
   "presets": [
-    "es2015-loose-rollup"
+    "es2015-loose-rollup",
+    "stage-0"
   ],
   "env": {
     "development": {
