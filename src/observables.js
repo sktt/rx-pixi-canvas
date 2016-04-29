@@ -24,7 +24,7 @@ export const obs = {}
  * Add assets to loader and return a stream that emits when a Loader is
  * completed. Emits also for when no assets are sent
  */
-create.resources = (loader: Loader, assets) => {
+obsCreate.resources = (loader: Loader, assets) => {
   if(!Object.keys(assets).length) {
     // no assets, emit empty
     return Observable.just({})
